@@ -5,9 +5,10 @@ RUN yum -y update && \
     yum install -y epel-release && \
     yum install -y autoconf gperf bison file flex texinfo help2man gcc-c++ \
     libtool make patch ncurses-devel python36-devel perl-Thread-Queue bzip2 \
-    git wget which xz unzip && \
+    git wget which xz unzip sudo && \
     yum clean all
 
+RUN echo "root:root" | chpasswd
 # Add a user called `develop` and add him to the sudo group
 RUN useradd -m develop && echo "develop:develop" | chpasswd && \
     usermod -aG wheel develop
